@@ -1,4 +1,5 @@
-from util import *
+from utils import *
+
 
 data = parse_to_list(read_input(1))
 
