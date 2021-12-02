@@ -1,6 +1,6 @@
 from utils import *
 
-data = [line.strip().split(" ") for line in read_aoc_input(2) ]
+data = [ line.strip().split(" ") for line in read_aoc_input(2) ]
 
 # Part 1
 x_dist, depth = 0, 0
