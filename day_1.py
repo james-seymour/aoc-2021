@@ -9,7 +9,6 @@ for depth, next_depth in zip(data, data[1:]):
     if next_depth > depth:
         increases += 1
 
-
 # Part 2
 sliding_window = []
 for first_depth, second_depth, third_depth in zip(data, data[1:], data[2:]):
