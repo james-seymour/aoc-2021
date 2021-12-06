@@ -51,7 +51,7 @@ def sum_win(win):
 # print(numbers_drawn)
 win, num = find_winning_grid()
 # print(grids[win], num)
-# print(sum_win(grids[win]) * num) 
+print(sum_win(grids[win]) * num) 
 
 
 
@@ -83,17 +83,14 @@ def find_last_grid():
             return grids_copy, num
         
         grids_copy = new_grids
-print(numbers_drawn)
+
 grids, number = find_last_grid()
 grids = mark_number(grids, 75)
 grids = mark_number(grids, 87)
-# grids = mark_number(grids, 6)
-# grids = mark_number(grids, 61)
 number = 6
 for grid in grids:
     if not check_win(grid):
-        print(grid)
-        print(sum_win(grid) * number)
+        print((sum_win(grid)-6) * number)
 
 
 
@@ -105,12 +102,6 @@ for grid in grids:
 
 
 
-
-# 58 60 65  4 91
-# 73 31 80 83 44
-# 98 47 33 21 25
-# 76  6 41 94 50
-# 55 30 52 11 36
 
 
 
