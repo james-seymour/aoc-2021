@@ -7,6 +7,7 @@ data = [line.split(" ")[1:] for line in data]
 lens = [2, 4, 3, 7]
 stored = defaultdict(int)
 
+
 for line in data:
     for word in line:
         if len(word) in lens:
