@@ -1,22 +1,7 @@
-from utils import read_aoc_input, count_freq
-from dataclasses import dataclass
+from utils import read_aoc_input
 import collections
 
-# edges = [line.split("-") for line in read_aoc_input(12)]
-edges = [line.split("-") for line in "start-A\nstart-b\nA-c\nA-b\nb-d\nA-end\nb-end".split()]
-
-
-def opposite(edge):
-    ops = []
-    for s,e in edges:
-        if s == edge:
-            ops.append(e)
-        elif e == edge:
-            ops.append(s)
-    return ops
-
-
-
+edges = [line.split("-") for line in read_aoc_input(12)]
 
 def successors(node):
     a = []
@@ -33,15 +18,9 @@ class Node:
         self.v = v
         self.path = path
 
-    def __repr__(self):
-        return f"{self.v}, {self.path}"
-
-
 def search():
     all = []
-    q = []
-    start = Node("start", ["start"])
-    q.append(start)
+    q = [Node("start", ["start"])]
     while q:
         current = q.pop()
 
@@ -58,40 +37,3 @@ def search():
     return all
 
 print(len(search()))
-# def search():
-#     all = []
-#     q = []
-#     visited = set()
-#     q.append(Node("start", ["start"]))
-#     while q:
-#         current = q.pop()
-
-#         if current.v == "end":
-#             all.append(current)
-
-#         for new_n in opposite(current):
-#             print(new_n)
-#             # if new_n.v in visited:
-#                 # continue
-#             if sum([v[0].islower() for v in new_n.path]) > 2:
-#                 continue
-                
-#             q.append(new_n)
- 
-#     return all
-
-
-
-            
-
-
-
-
-
-
-
-    
-
-
-
-

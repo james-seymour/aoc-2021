@@ -1,13 +1,7 @@
-from re import A
-from utils import read_aoc_input, count_freq, dict_map_vals
-from dataclasses import dataclass
+from utils import read_aoc_input
 import collections
 
-from utils.builtins import dict_map_keys
-
 edges = [line.split("-") for line in read_aoc_input(12)]
-# edges = [line.split("-") for line in "start-A\nstart-b\nA-c\nA-b\nb-d\nA-end\nb-end".split()]
-
 
 def successors(node):
     a = []
@@ -24,27 +18,9 @@ class Node:
         self.v = v
         self.path = path
 
-    def __repr__(self):
-        return f"{self.v}, {self.path}"
-
-def edge_is_lower(edge):
-    return edge[0].islower()
-
-def parse_dups(dups):
-    print(dups)
-    if len(dups) == 1:
-        if dups[0][1] > 2:
-            return True
-        else:
-            return False
-    if any([count >= 3 for e, count in dups]):
-        return True
-
 def search():
     all = []
-    q = []
-    start = Node("start", ["start"])
-    q.append(start)
+    q = [Node("start", ["start"])]
     while q:
         current = q.pop()
 
@@ -53,11 +29,7 @@ def search():
             continue
 
         counts = collections.Counter(current.path)
-        yeet = []
-        for k, v in counts.items():
-            if k[0].islower():
-                yeet.append((k,v))
-        lowers = dict(yeet)
+        lowers = {k: v for k, v in counts.items() if k[0].islower()}
 
         if counts["start"] > 1 or counts["end"] > 1:
             continue
