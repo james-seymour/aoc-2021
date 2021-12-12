@@ -1,4 +1,5 @@
 from utils.data import read_aoc_input
+from functools import reduce
 data = read_aoc_input(10)
 
 
@@ -30,12 +31,8 @@ for line in data:
     if code is not None:
         continue
 
-    total = 0
-    ps = list(map(points.get, inv_stack))
-    for p in ps:
-        total *= 5
-        total += p
-
+    ps = [0] + list(map(points.get, inv_stack))
+    total = reduce(lambda x,y : x*5 + y, ps)
     totals.append(total)
 
 totals.sort()

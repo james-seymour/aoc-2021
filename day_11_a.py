@@ -1,6 +1,4 @@
-from utils.data import read_aoc_input
-from utils.grid import neighbours
-from utils.builtins import deepmap
+from utils import read_aoc_input, neighbours, deep_map
 
 grid = [[int(char) for char in line] for line in read_aoc_input(11) ]
 
@@ -13,12 +11,12 @@ def step(grid):
             if grid[r][c] == 10:
                 flash(r, c, grid)
 
-    return deepmap(lambda x: 0 if x > 9 else x, grid)
+    return deep_map(lambda x: 0 if x > 9 else x, grid)
 
 def flash(row, col, grid):
     global t
     t += 1
-    for n_r, n_c in neighbours((row, col), grid=grid):
+    for n_r, n_c in neighbours((row, col), grid=grid, extended=True):
         grid[n_r][n_c] += 1
         if grid[n_r][n_c] == 10:
             flash(n_r, n_c, grid)
@@ -27,15 +25,3 @@ for _ in range(100):
     grid = step(grid)
 
 print(t)
-
-
-
-
-    
-
-
-
-
-
-# step(grid)
-# step(grid)
