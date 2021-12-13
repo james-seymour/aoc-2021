@@ -37,6 +37,7 @@ def search():
             continue
         if any([count > 2 for count in lowers.values()]):
             continue
+
         for new_n in successors(current):
             q.append(new_n)
 

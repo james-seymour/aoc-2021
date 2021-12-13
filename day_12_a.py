@@ -29,11 +29,12 @@ def search():
             continue
 
         dups = [item for item, count in collections.Counter(current.path).items() if count > 1]
-        if True in [dup[0].islower() for dup in dups]:
+        if any([dup[0].islower() for dup in dups]):
             continue
 
         for new_n in successors(current):
             q.append(new_n)
+
     return all
 
 print(len(search()))
