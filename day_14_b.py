@@ -7,6 +7,7 @@ base = data[0].strip()
 rules = dict([line.split(" -> ") for line in data[2:]])
 
 pair_count = Counter([x + y for x, y in zip(base, base[1:])])
+polymer_count = Counter(base)
 
 for _ in range(40):
     new_pair_count = defaultdict(int)
@@ -16,17 +17,8 @@ for _ in range(40):
 
         new_pair_count[first_l + insert] += count
         new_pair_count[insert + second_l] += count
+        polymer_count[insert] += count
 
     pair_count = new_pair_count
 
-first_count = defaultdict(int)
-second_count = defaultdict(int)
-
-for pair, count in pair_count.items():
-    first_l, second_l = pair
-    first_count[first_l] += count
-    second_count[second_l] += count
-
-counts = {char: max(first_count[char], second_count[char]) for char in first_count.keys()}
-
-print(max(counts.values()) - min(counts.values()))
+print(max(polymer_count.values()) - min(polymer_count.values()))
