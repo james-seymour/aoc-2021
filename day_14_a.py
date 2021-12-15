@@ -1,7 +1,7 @@
-from utils import read_aoc_input
-from collections import Counter, defaultdict
+from collections import Counter
 
-data = read_aoc_input(14)
+with open("day_14_input.txt") as f:
+    data = [line.strip() for line in f.readlines()]
 
 base = data[0].strip()
 rules = dict([line.split(" -> ") for line in data[2:]])
@@ -16,6 +16,7 @@ for _ in range(10):
 
     res.append(seq[-1])
     base = "".join(res)
+print(base)
 
 counter = Counter(base)
 

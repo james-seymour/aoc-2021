@@ -1,9 +1,9 @@
-from utils import read_aoc_input
 from collections import defaultdict, Counter
 
-data = read_aoc_input(14)
+with open("day_14_input.txt") as f:
+    data = [line.strip() for line in f.readlines()]
 
-base = data[0].strip()
+base = data[0]
 rules = dict([line.split(" -> ") for line in data[2:]])
 
 pair_count = Counter([x + y for x, y in zip(base, base[1:])])
