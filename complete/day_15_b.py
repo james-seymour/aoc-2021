@@ -1,4 +1,4 @@
-from utils import read_aoc_input, int_lines_to_grid, neighbours, deep_map
+from utils import read_aoc_input, int_lines_to_grid, neighbours, deep_map, zeros
 from dataclasses import dataclass
 from heapq import heappush, heappop
 
@@ -8,14 +8,14 @@ grid = int_lines_to_grid(data)
 row_l = len(grid)
 col_l = len(grid[0])
 
-extended_grid = [[0] * len(row) * 5 for row in grid * 5]
+extended_grid = zeros(5 * row_l, 5 * col_l)
 
 def get_nth_grid(grid, n):
-    if n == 0:
-        return grid
+    if n == 0: return grid
     new = deep_map(lambda x: x % 9 + 1, grid)
     return get_nth_grid(new, n - 1)
 
+# Place new grids in extended grid
 for i in range(5):
     for j in range(5):
         new = get_nth_grid(grid, i + j)
@@ -24,6 +24,7 @@ for i in range(5):
                 extended_grid[i * row_l + row_i][j * col_l + col_i] = new[row_i][col_i]
 
 grid = extended_grid
+
 @dataclass
 class Node:
     x: int
